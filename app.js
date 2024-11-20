@@ -22,6 +22,10 @@ app.use('/', homeRoute);
 app.get('/loggedin', (req, res) => {
     res.render('loggedin'); // Or return a view that you want to show for the logged-in page
   });
+
+app.get('/login', (req, res) => {
+    res.render('login'); // Or return a view that you want to show for the logged-in page
+  });
   
 // Start the server
 const PORT = process.env.PORT || 3000;

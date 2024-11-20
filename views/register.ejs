@@ -58,20 +58,20 @@
   </style>
 </head>
 <script>
-    function submitlogin() {
-      window.location.href = "/loggedin";
-      console.log("Button Pushed");
-    }
-  </script>
+  function navigatetologin() {
+    window.location.href = "/login";
+    console.log("Button Pushed");
+  }
+</script>
 <body>
   <div class="container">
     <h1>Task Manager</h1>
     <form id="login-form">
       <input type="text" id="username" placeholder="Username" required />
       <input type="password" id="password" placeholder="Password" required />
-      <button type="submit" onclick="submitlogin()">Sign In</button>
+      <input type="confirm" id="confirm" placeholder="Confirm" required />
+      <button type="submit" onclick="navigatetologin()">Create account</button>
     </form>
-    <a href="/register" class="link">No Account? Create One</a>
   </div>
 
   <script src="/app.js"></script>

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-app.get('/loggedin', (req, res) => {
-    res.sendFile(__dirname + '/views/loggedin.html'); // Adjust path as necessary
-  });
+router.get('/loggedin', (req, res) => {
+    res.render('loggedin'); // Assuming 'loggedin.ejs' exists in the 'views' folder
+});
 
 module.exports = router;

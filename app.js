@@ -15,12 +15,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Import and use routes
 const homeRoute = require('./routes/home');
-const loggedInRoute = require('./routes/loggedin'); // Add this
-app.use('/', homeRoute);
-app.use('/', loggedInRoute); // Add this
 
+// Home route (handles requests to "/")
+app.use('/', homeRoute);
+
+app.get('/loggedin', (req, res) => {
+    res.render('loggedin'); // Or return a view that you want to show for the logged-in page
+  });
+  
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

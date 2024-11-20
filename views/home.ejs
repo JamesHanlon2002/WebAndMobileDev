@@ -67,7 +67,8 @@
 </head>
 <script>
   function navigateToLoggedIn() {
-    location.href = "./routes/loggedin.js";
+    window.location.href = "/loggedin";
+    console.log("Button Pushed");
   }
 </script>
 <body>
@@ -78,7 +79,6 @@
       <button class="sign-in-btn" onclick="navigateToLoggedIn()">Sign In</button>
       <p>Simplify life for both you and your team with the world’s #1 task manager and to-do list app.</p>
     </div>
-    <a href="/loggedin">Go to Logged In Page</a>
     <div class="right-section">
       temp image
     </div>

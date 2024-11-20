@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./routes/loggedin.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #e0f4e0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .task-section {
+            margin-bottom: 20px;
+        }
+        .task-section h3 {
+            background-color: #d3d3d3;
+            padding: 10px;
+            margin: 0;
+        }
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .task-item + .task-item {
+            margin-top: 10px;
+        }
+        .task-item input {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Task Manager</h2>
+        <a href="#">+ Add New Task</a>
+        <a href="#">Today's Tasks</a>
+        <a href="#">Upcoming</a>
+        <a href="#">Filters</a>
+        <div style="margin-top: 20px;">
+            <a href="#">Settings</a>
+            <a href="#">Sign Out</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="task-section">
+            <h3>Task</h3>
+            <div class="task-item">
+                <span>this is a task</span>
+                <input type="checkbox">
+            </div>
+        </div>
+        <div class="task-section">
+            <h3>Task</h3>
+            <div class="task-item">
+                <span>this is a task</span>
+                <input type="checkbox">
+            </div>
+            <div class="task-item">
+                <span>this is a task</span>
+                <input type="checkbox">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

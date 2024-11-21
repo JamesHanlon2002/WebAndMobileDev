@@ -73,7 +73,7 @@ app.post("/register", async (req, res) => {
     const newUser = new User({ username, password: hashedPassword });
 
     await newUser.save();
-    res.redirect("/");
+    res.redirect("/login");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

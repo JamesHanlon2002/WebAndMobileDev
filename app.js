@@ -7,7 +7,7 @@ const app = express();
 
 // MongoDB connection
 mongoose
-  .connect("mongodb+srv://<username>:<encoded-password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority", {
+  .connect("mongodb+srv://jmhanlon2002:Uniwork@cluster0.qnlfj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     connectTimeoutMS: 20000,
   })
   .then(() => console.log("MongoDB connected"))

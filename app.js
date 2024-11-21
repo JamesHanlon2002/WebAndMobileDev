@@ -31,6 +31,9 @@ app.get('/register', (req, res) => {
     res.render('register'); // Or return a view that you want to show for the logged-in page
   });
   
+app.get('/settings', (req, res) => {
+    res.render('settings'); // Or return a view that you want to show for the logged-in page
+  });
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

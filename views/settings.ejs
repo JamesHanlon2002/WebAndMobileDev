@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #e0f4e0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .settings-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .settings-header a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .settings-header a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[disabled] {
+            background-color: #eee;
+            color: #999;
+        }
+
+        .form-group button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Task Manager</h2>
+        <a href="#">+ Add New Task</a>
+        <a href="#">Today's Tasks</a>
+        <a href="#">Upcoming</a>
+        <a href="#">Filters</a>
+        <div style="margin-top: 400px;">
+            <a href="#">Settings</a>
+            <a href="#">Sign Out</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h2>User Settings</h2>
+                <a href="/loggedin">Back</a>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" value="John">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Second Name</label>
+                    <input type="text" id="lastName" value="Appleseed">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="johnappleseed@example.com" disabled>
+                </div>
+                <div class="form-group">
+                    <button type="button">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

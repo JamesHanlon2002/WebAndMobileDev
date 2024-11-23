@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('register');  // Renders views/loggedin.ejs
+  res.render('register');
 });
 
 app.post("/register", async (req, res) => {

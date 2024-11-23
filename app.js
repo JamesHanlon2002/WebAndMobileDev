@@ -40,6 +40,7 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// login route and login authentication
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -61,6 +62,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
+// register route and adding accounts to mongodb data base
 app.get("/register", (req, res) => {
   res.render("register");
 });

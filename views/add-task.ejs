@@ -44,7 +44,7 @@
       background-color: #FFFFFF;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      padding: 50px;
       width: 50%;
     }
 
@@ -99,33 +99,6 @@
     form button:hover {
       background-color: #2FA765;
     }
-
-    .filters-container h3 {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .filters-container label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .filters-container input {
-      margin-right: 10px;
-    }
-
-    .filters-container .priority-group {
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
-    }
-
-    .filters-container .priority-group label {
-      margin-bottom: 5px;
-    }
   </style>
 </head>
 <body>
@@ -159,19 +132,6 @@
 
         <button type="submit">Create Task!</button>
       </form>
-    </div>
-
-    <div class="filters-container">
-      <h3>Filters and Tags</h3>
-      <label>People Involved:</label>
-      <input type="text" placeholder="Mark, Jeremy, Hans" />
-
-      <div class="priority-group">
-        <label>Priority:</label>
-        <label><input type="radio" name="priority" value="low" /> Low</label>
-        <label><input type="radio" name="priority" value="medium" /> Medium</label>
-        <label><input type="radio" name="priority" value="high" /> High</label>
-      </div>
     </div>
   </div>
 </body>

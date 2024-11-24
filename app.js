@@ -3,7 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const crypto = require('crypto');
-
+const User = require("./models/user");
 const app = express();
 
 // MongoDB connection
@@ -14,25 +14,10 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// Define User Schema and Model
-const taskSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  date: { type: Date, required: true },
-});
-
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  tasks: [taskSchema], // Array of task objects
-});
-const User = mongoose.model("User", userSchema);
-const session = require('express-session');
-
 //session middleware
 const secureKey = crypto.randomBytes(64).toString('hex');
-app.use(
-  session({
+const session = require("express-session")
+app.use(session({
     secret: secureKey,
     resave: false,
     saveUninitialized: false,
@@ -48,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files middleware
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "routes")));
 
 
 
@@ -139,24 +124,11 @@ app.get("/loggedin", async (req, res) => {
 
 
 // code to add a task
-app.post("/add-task", async (req, res) => {
-  if (!req.session.userId) {
-    return res.redirect("/login");
-  }
+const addTaskRouter = require("./routes/add-task");
 
-  const { name, description, date } = req.body;
+// Use the add-task route
+app.use("/add-task", addTaskRouter);
 
-  try {
-    const user = await User.findById(req.session.userId);
-    user.tasks.push({ name, description, date });
-    await user.save();
-
-    res.redirect("/loggedin");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
-  }
-});
 
 
 // Start the server

@@ -14,11 +14,30 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Define User Schema and Model
+const taskSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  date: { type: Date, required: true },
+});
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  tasks: [taskSchema], // Array of task objects
 });
+
 const User = mongoose.model("User", userSchema);
+
+const session = require('express-session');
+
+// Add session middleware
+app.use(
+  session({
+    secret: 'your-secret-key', // Replace with a secure key
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 // Set up the view engine
 app.set("view engine", "ejs");
@@ -52,15 +71,17 @@ app.post("/login", async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.redirect("/login")
+      return res.redirect("/login");
     }
 
+    req.session.userId = user._id; // Store user ID in session
     res.redirect("/loggedin");
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
   }
 });
+
 
 
 // register route and adding accounts to mongodb data base
@@ -83,8 +104,46 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.get("/loggedin", (req, res) => {
-  res.render("loggedin");
+app.get("/loggedin", async (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect("/login");
+  }
+
+  try {
+    const user = await User.findById(req.session.userId);
+    res.render("loggedin", { username: user.username, tasks: user.tasks });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+app.post("/add-task", async (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect("/login");
+  }
+
+  const { name, description, date } = req.body;
+
+  try {
+    const user = await User.findById(req.session.userId);
+    user.tasks.push({ name, description, date });
+    await user.save();
+
+    res.redirect("/loggedin");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+
+
+app.get("/add-task", (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect("/login");
+  }
+  res.render("add-task"); // Render the add-task.ejs page
 });
 
 app.get("/settings", (req, res) => {

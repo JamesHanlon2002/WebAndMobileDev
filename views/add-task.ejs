@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 20%;
+      background-color: #2C2F33;
+      color: #FFFFFF;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .sidebar a.add-task {
+      display: flex;
+      align-items: center;
+      background-color: #43B581;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      justify-content: center;
+    }
+
+    .sidebar a.add-task:hover {
+      background-color: #2FA765;
+    }
+
+    .sidebar .footer-links {
+      margin-top: auto;
+    }
+
+    .main-container {
+      display: flex;
+      flex: 1;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .form-container, .filters-container {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 50%;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    form label {
+      display: block;
+      font-weight: bold;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    form textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    form button {
+      background-color: #43B581;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    form button:hover {
+      background-color: #2FA765;
+    }
+
+    .filters-container h3 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .filters-container label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .filters-container input {
+      margin-right: 10px;
+    }
+
+    .filters-container .priority-group {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .filters-container .priority-group label {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <a href="#" class="add-task">+ Add New Task</a>
+      <a href="#">Today's Tasks</a>
+      <a href="#">Upcoming</a>
+      <a href="#">Filters</a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Settings</a>
+      <a href="#">Sign Out</a>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="form-container">
+      <h1>Create a New Task</h1>
+      <form action="/add-task" method="POST">
+        <label for="name">Task Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter task name" required />
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter task description" required></textarea>
+
+        <label for="date">Date Due:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="time">Time Due:</label>
+        <input type="time" id="time" name="time" required />
+
+        <button type="submit">Create Task!</button>
+      </form>
+    </div>
+
+    <div class="filters-container">
+      <h3>Filters and Tags</h3>
+      <label>People Involved:</label>
+      <input type="text" placeholder="Mark, Jeremy, Hans" />
+
+      <div class="priority-group">
+        <label>Priority:</label>
+        <label><input type="radio" name="priority" value="low" /> Low</label>
+        <label><input type="radio" name="priority" value="medium" /> Medium</label>
+        <label><input type="radio" name="priority" value="high" /> High</label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

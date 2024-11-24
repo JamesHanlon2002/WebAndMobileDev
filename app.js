@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const crypto = require('crypto');
 
 const app = express();
 
@@ -25,15 +26,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   tasks: [taskSchema], // Array of task objects
 });
-
 const User = mongoose.model("User", userSchema);
-
 const session = require('express-session');
 
-// Add session middleware
+//session middleware
+const secureKey = crypto.randomBytes(64).toString('hex');
 app.use(
   session({
-    secret: 'your-secret-key', // Replace with a secure key
+    secret: secureKey,
     resave: false,
     saveUninitialized: false,
   })
@@ -50,6 +50,10 @@ app.use(express.urlencoded({ extended: true }));
 // Static files middleware
 app.use(express.static(path.join(__dirname, "public")));
 
+
+
+
+
 // Routes
 app.get("/", (req, res) => {
   res.render("home"); // Render home.ejs by default
@@ -58,6 +62,21 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
+
+app.get("/add-task", (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect("/login");
+  }
+  res.render("add-task");
+});
+
+app.get("/settings", (req, res) => {
+  res.render("settings");
+});
+
+
+
+
 
 // login route and login authentication
 app.post("/login", async (req, res) => {
@@ -118,6 +137,8 @@ app.get("/loggedin", async (req, res) => {
   }
 });
 
+
+// code to add a task
 app.post("/add-task", async (req, res) => {
   if (!req.session.userId) {
     return res.redirect("/login");
@@ -137,18 +158,6 @@ app.post("/add-task", async (req, res) => {
   }
 });
 
-
-
-app.get("/add-task", (req, res) => {
-  if (!req.session.userId) {
-    return res.redirect("/login");
-  }
-  res.render("add-task"); // Render the add-task.ejs page
-});
-
-app.get("/settings", (req, res) => {
-  res.render("settings");
-});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

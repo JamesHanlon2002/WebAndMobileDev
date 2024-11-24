@@ -16,15 +16,15 @@
     }
 
     .sidebar {
-      width: 200px;
-      height: 100vh;
-      background-color: #e0f4e0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+        width: 200px;
+        height: 100vh;
+        background-color: #e0f4e0;
+        padding: 20px;
+        box-sizing: border-box;
     }
-
+    .sidebar h2 {
+        margin-top: 0;
+    }
     .sidebar a {
         display: block;
         color: black;
@@ -32,10 +32,6 @@
         margin: 10px 0;
         font-weight: bold;
     }
-    .sidebar a:hover {
-            text-decoration: underline;
-    }
-
 
     .main-container {
       display: flex;
@@ -139,9 +135,9 @@
       <a href="#">Today's Tasks</a>
       <a href="#">Upcoming</a>
     </div>
-    <div class="footer-links">
-      <a href="#">Settings</a>
-      <a href="#">Sign Out</a>
+    <div style="margin-top: 400px;">
+        <a href = "/settings">Settings</a>
+        <a href="#">Sign Out</a>
     </div>
   </div>
 
